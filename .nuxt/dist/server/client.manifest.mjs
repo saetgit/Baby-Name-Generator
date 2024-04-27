@@ -1,0 +1,1 @@
+export { default } from "file:///media/sara/HDD/project/Project/1403/nuxt.js/Baby-Name-Generator/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
