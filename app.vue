@@ -1,36 +1,100 @@
-<script setup>
-const options=reactive({
-  gender:"Girl",
-  popularity:"Trendy",
-  length:"All"
-})
+<script setup lang="ts">
+enum Gender {
+  GIRL = "Girl",
+  BOY = "Boy",
+  UNISEX = "Unisex",
+}
+
+enum Popularity {
+  TRENDY = "Trendy",
+  UNIQUE = "Unique",
+}
+
+enum Length {
+  SHORT = "Short",
+  LONG = "Long",
+  ALL = "All",
+}
+
+interface OptionsState {
+  gender: Gender;
+  popularity: Popularity;
+  length: Length;
+}
+
+const options = reactive<OptionsState>({
+  gender: Gender.GIRL,
+  length: Length.SHORT,
+  popularity: Popularity.TRENDY,
+});
+
 </script>
 <template>
- <div class="container">
+  <div class="container">
     <h1>Baby Name Generator</h1>
     <p>Choose your options and click the "Find Names" buttom below</p>
     <div class="options-container">
       <div class="option-container">
         <h4>1) Choose a gender</h4>
         <div class="option-buttons">
-          <button class="option option-left" :class="options.gender==='Boy' && 'option-active'">Boy</button>
-          <button class="option"  :class="options.gender==='Unisex' && 'option-active'">Unisex</button>
-          <button class="option option-right"  :class="options.gender==='Girl' && 'option-active'">Girl</button>
+          <button
+            class="option option-left"
+            :class="options.gender === Gender.BOY && 'option-active'"
+          >
+            Boy
+          </button>
+          <button
+            class="option"
+            :class="options.gender === Gender.UNISEX && 'option-active'"
+          >
+            Unisex
+          </button>
+          <button
+            class="option option-right"
+            :class="options.gender === Gender.GIRL && 'option-active'"
+          >
+            Girl
+          </button>
         </div>
       </div>
       <div class="option-container">
         <h4>2) Choose the name's popularity</h4>
         <div class="option-buttons">
-          <button class="option option-left" :class="options.popularity==='Trendy' && 'option-active'">Trendy</button>
-          <button class="option option-right" :class="options.popularity==='Unique' && 'option-active'">Unique</button>
+          <button
+            class="option option-left"
+            :class="options.popularity === Popularity.TRENDY && 'option-active'"
+          >
+            Trendy
+          </button>
+          <button
+            class="option option-right"
+            :class="options.popularity === Popularity.UNIQUE && 'option-active'"
+          >
+            Unique
+          </button>
         </div>
       </div>
       <div class="option-container">
         <h4>2) Choose name's length</h4>
         <div class="option-buttons">
-          <button class="option option-left" :class="options.length==='Long' && 'option-active'">Long</button>
-          <button class="option" :class="options.length==='All' && 'option-active'">All</button>
-          <button class="option option-right" :class="options.length==='Short' && 'option-active'">Short</button>
+          <button
+            class="option option-left"
+            :class="options.length === Length.LONG && 'option-active'"
+          >
+            Long
+          </button>
+          <button
+            class="option"
+            :class="options.length === Length.ALL && 'option-active'"
+          >
+            All
+          </button>
+          <button
+            class="option option-right"
+            :class="options.length === Length.SHORT && 'option-active'"
+          >
+            Short
+          </button>
         </div>
       </div>
     </div>
@@ -83,7 +147,8 @@ h1 {
 .option-right {
   border-radius: 0 1rem 1rem 0;
 }
-.option-active{
+
+.option-active {
   background-color: rgb(249, 87, 89);
   color: white;
 }
