@@ -13,15 +13,17 @@ const options = reactive<OptionsState>({
   popularity: Popularity.TRENDY,
 });
 
-const computedSelectedNames = () => {
-  const filterNames = names.filter((name: any) => name.gender === options.gender)
-    .filter((name: any) => name.popularity === options.popularity)
-    .filter((name: any) => {
-      if (options.length === Length.ALL) return true
-      else return name.length === options.length
-    })
-  selectedNames.value = filterNames.map((name: any) => name.name)
-}
+const computeSelectedNames = () => {
+  const filteredNames = names
+    .filter((name) => name.gender === options.gender)
+    .filter((name) => name.popularity === options.popularity)
+    .filter((name) => {
+      if (options.length === Length.ALL) return true;
+      else return name.length === options.length;
+    });
+
+  selectedNames.value = filteredNames.map((name) => name.name);
+};
 
 const selectedNames = ref<string[]>([]);
 
@@ -29,19 +31,19 @@ const optionsArray = [
   {
     title: "1) Choose a gender",
     category: "gender",
-    buttons: [Gender.GIRL, Gender.UNISEX, Gender.BOY]
+    buttons: [Gender.GIRL, Gender.UNISEX, Gender.BOY],
   },
   {
     title: "2) Choose the name's popularity",
     category: "popularity",
-    buttons: [Popularity.TRENDY, Popularity.UNIQUE]
+    buttons: [Popularity.TRENDY, Popularity.UNIQUE],
   },
   {
     title: "3) Choose name's length",
     category: "length",
-    buttons: [Length.LONG, Length.ALL, Length.SHORT]
-  }
-]
+    buttons: [Length.SHORT, Length.ALL, Length.LONG],
+  },
+];
 </script>
 <template>
   <div class="container">
@@ -49,7 +51,7 @@ const optionsArray = [
     <p>Choose your options and click the "Find Names" buttom below</p>
     <div class="options-container">
       <Option v-for="option in optionsArray" :key="option.title" :option="option" :options="options" />
-      <button class="primary" @click="computedSelectedNames">Find Names</button>
+      <button class="primary" @click="computeSelectedNames">Find Names</button>
     </div>
     <div class="cards-container">
       <div v-for="name in selectedNames" :key="name" class="card">
