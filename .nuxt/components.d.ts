@@ -1,6 +1,7 @@
 
 interface _GlobalComponents {
-      'Option': typeof import("../components/Option.vue")['default']
+      'CardName': typeof import("../components/Card/Name.vue")['default']
+    'Option': typeof import("../components/Option.vue")['default']
     'NuxtWelcome': typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
     'NuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
     'NuxtErrorBoundary': typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']
@@ -22,7 +23,8 @@ interface _GlobalComponents {
     'Head': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Head']
     'Html': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Html']
     'Body': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
-      'LazyOption': typeof import("../components/Option.vue")['default']
+      'LazyCardName': typeof import("../components/Card/Name.vue")['default']
+    'LazyOption': typeof import("../components/Option.vue")['default']
     'LazyNuxtWelcome': typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
     'LazyNuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
     'LazyNuxtErrorBoundary': typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']
@@ -58,6 +60,7 @@ declare module 'vue' {
   export interface GlobalComponents extends _GlobalComponents { }
 }
 
+export const CardName: typeof import("../components/Card/Name.vue")['default']
 export const Option: typeof import("../components/Option.vue")['default']
 export const NuxtWelcome: typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
 export const NuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
@@ -80,6 +83,7 @@ export const Style: typeof import("../node_modules/nuxt/dist/head/runtime/compon
 export const Head: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Head']
 export const Html: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Html']
 export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
+export const LazyCardName: typeof import("../components/Card/Name.vue")['default']
 export const LazyOption: typeof import("../components/Option.vue")['default']
 export const LazyNuxtWelcome: typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
 export const LazyNuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
