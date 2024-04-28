@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Gender, Popularity, Length, names } from "@/data";
+import { Gender, Popularity, Length, names } from "./data";
 
 interface OptionsState {
   gender: Gender;
@@ -14,32 +14,32 @@ const options = reactive<OptionsState>({
 });
 
 const computedSelectedNames = () => {
-  const filterNames = names.filter((name) => name.gender === options.gender)
-    .filter((name) => name.popularity === options.popularity)
-    .filter((name) => {
+  const filterNames = names.filter((name: any) => name.gender === options.gender)
+    .filter((name: any) => name.popularity === options.popularity)
+    .filter((name: any) => {
       if (options.length === Length.ALL) return true
       else return name.length === options.length
     })
-  selectedNames.value = filterNames.map((name) => name.name)
+  selectedNames.value = filterNames.map((name: any) => name.name)
 }
 
 const selectedNames = ref<string[]>([]);
 
-const optionsArray=[
+const optionsArray = [
   {
-    title:"1) Choose a gender",
-    category:"gender",
-    button:[Gender.GIRL,Gender.UNISEX,Gender.BOY]
+    title: "1) Choose a gender",
+    category: "gender",
+    buttons: [Gender.GIRL, Gender.UNISEX, Gender.BOY]
   },
   {
-    title:"2) Choose the name's popularity",
-    category:"popularity",
-    button:[Popularity.TRENDY,Popularity.UNIQUE]
+    title: "2) Choose the name's popularity",
+    category: "popularity",
+    buttons: [Popularity.TRENDY, Popularity.UNIQUE]
   },
   {
-    title:"3) Choose name's length",
-    category:"length",
-    button:[Length.LONG,Length.ALL,Length.SHORT]
+    title: "3) Choose name's length",
+    category: "length",
+    buttons: [Length.LONG, Length.ALL, Length.SHORT]
   }
 ]
 </script>
@@ -48,7 +48,7 @@ const optionsArray=[
     <h1>Baby Name Generator</h1>
     <p>Choose your options and click the "Find Names" buttom below</p>
     <div class="options-container">
-     <Option v-for="option in optionsArray" :key="option.title"/>
+      <Option v-for="option in optionsArray" :key="option.title" :option="option" :options="options" />
       <button class="primary" @click="computedSelectedNames">Find Names</button>
     </div>
     <div class="cards-container">
@@ -83,35 +83,6 @@ h1 {
   position: relative;
 }
 
-.option-container {
-  margin-bottom: 2rem;
-}
-
-.option {
-  background: white;
-  outline: 0.15rem solid rgb(249, 87, 89);
-  border: none;
-  padding: 0.75rem;
-  width: 12rem;
-  font-size: 1rem;
-  color: rgb(27, 60, 138);
-  cursor: pointer;
-  font-weight: 200;
-}
-
-.option-left {
-  border-radius: 1rem 0 0 1rem;
-}
-
-.option-right {
-  border-radius: 0 1rem 1rem 0;
-}
-
-.option-active {
-  background-color: rgb(249, 87, 89);
-  color: white;
-}
-
 .primary {
   background-color: rgb(249, 87, 89);
   color: white;
@@ -123,13 +94,13 @@ h1 {
   cursor: pointer;
 }
 
-.cards-container{
+.cards-container {
   display: flex;
   margin-top: 3rem;
   flex-wrap: wrap;
 }
 
-.card{
+.card {
   background-color: rgb(27, 60, 138);
   width: 28%;
   color: white;
@@ -140,11 +111,11 @@ h1 {
   position: relative;
 }
 
-.card p{
+.card p {
   position: absolute;
   top: -29%;
   left: 92.5%;
   cursor: pointer;
-  color: rgba(255,255,255,0.178);
+  color: rgba(255, 255, 255, 0.178);
 }
 </style>

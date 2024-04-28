@@ -20,9 +20,6 @@
       "@unhead/vue": [
         "../node_modules/@unhead/vue"
       ],
-      "@vue/runtime-core": [
-        "../node_modules/@vue/runtime-core"
-      ],
       "@vue/compiler-sfc": [
         "../node_modules/@vue/compiler-sfc"
       ],
