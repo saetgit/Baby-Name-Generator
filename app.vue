@@ -13,7 +13,18 @@ const options = reactive<OptionsState>({
   popularity: Popularity.TRENDY,
 });
 
+const computedSelectedNames = () => {
+  const filterNames = names.filter((name) => name.gender === options.gender)
+    .filter((name) => name.popularity === options.popularity)
+    .filter((name) => {
+      if (options.length === Length.ALL) return true
+      else return name.length === options.length
+    })
+  selectedNames.value = filterNames.map((name) => name.name)
+}
+
 const selectedNames = ref<string[]>([]);
+
 </script>
 <template>
   <div class="container">
@@ -67,9 +78,10 @@ const selectedNames = ref<string[]>([]);
           </button>
         </div>
       </div>
-      <button class="primary">Find Names</button>
-      {{ selectedNames }}
+      <button class="primary" @click="computedSelectedNames">Find Names</button>
     </div>
+    {{ selectedNames }}
+
   </div>
 </template>
 
@@ -125,7 +137,7 @@ h1 {
   color: white;
 }
 
-.primary{
+.primary {
   background-color: rgb(249, 87, 89);
   color: white;
   border-radius: 6.5rem;
